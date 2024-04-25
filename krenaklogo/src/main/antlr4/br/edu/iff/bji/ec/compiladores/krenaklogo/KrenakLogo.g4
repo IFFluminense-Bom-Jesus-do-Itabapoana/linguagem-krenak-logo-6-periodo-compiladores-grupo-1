@@ -1,0 +1,3 @@
+grammar KrenakLogo;
+
+hello: 'Hello';
