@@ -9,15 +9,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class KrenakLogoLexerTest {
     
     @Test
-    public void testAlgoritmoToken() {
-        CharStream cs = CharStreams.fromString("Hello");
+    public void testNumberToken() {
+        CharStream cs = CharStreams.fromString("123");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
-        assertEquals(1, token.getType());
-        assertEquals("Hello", token.getText());
+        assertEquals(44, token.getType());
+        assertEquals("123", token.getText());
         
         token = lexer.nextToken();
         assertEquals("<EOF>", token.getText());
     }
+    
+    //TODO: Outros testes
     
 }
