@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class KrenakLogoLexerTest {
     
     @Test
-    public void testNumeroToken() {
+    public void testNumberToken() {
         CharStream cs = CharStreams.fromString("123");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
