@@ -32,5 +32,16 @@ public class KrenakLogoLexerTest {
         assertEquals(KrenakLogoLexer.EOF, token.getType());
     }
     
+    @Test
+    public void testIdentifierToken() {
+        CharStream cs = CharStreams.fromString("foo bar baz");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+    
+        assertEquals(KrenakLogoLexer.STRING, lexer.nextToken().getType());
+        assertEquals(KrenakLogoLexer.STRING, lexer.nextToken().getType());
+        assertEquals(KrenakLogoLexer.STRING, lexer.nextToken().getType());
+    
+        assertEquals(KrenakLogoLexer.EOF, lexer.nextToken().getType());
+}
     //TODO: Outros testes
 }
