@@ -20,6 +20,17 @@ public class KrenakLogoLexerTest {
         assertEquals("<EOF>", token.getText());
     }
     
-    //TODO: Outros testes
+    @Test
+    public void testStringLiteralToken() {
+        CharStream cs = CharStreams.fromString("\"Olá\"");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+        assertEquals(KrenakLogoLexer.STRINGLITERAL, token.getType());
+        assertEquals("\"Olá\"", token.getText());
+        
+        token = lexer.nextToken();
+        assertEquals(KrenakLogoLexer.EOF, token.getType());
+    }
     
+    //TODO: Outros testes
 }
