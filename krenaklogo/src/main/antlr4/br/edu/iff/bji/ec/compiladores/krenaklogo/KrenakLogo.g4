@@ -182,7 +182,7 @@ comment
     ;
 
 STRINGLITERAL
-    : '"' STRING
+    : '"' ( ~["\\] | '\\' . )* '"'
     ;
 
 STRING
