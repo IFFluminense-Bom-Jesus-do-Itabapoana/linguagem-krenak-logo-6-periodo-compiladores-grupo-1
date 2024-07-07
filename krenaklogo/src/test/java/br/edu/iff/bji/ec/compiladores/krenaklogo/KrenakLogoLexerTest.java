@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class KrenakLogoLexerTest {
-    
+
     @Test
     public void testNumberToken() {
         CharStream cs = CharStreams.fromString("123");
@@ -15,11 +15,11 @@ public class KrenakLogoLexerTest {
         Token token = lexer.nextToken();
         assertEquals(44, token.getType());
         assertEquals("123", token.getText());
-        
+
         token = lexer.nextToken();
         assertEquals("<EOF>", token.getText());
     }
-    
+
     @Test
     public void testStringLiteralToken() {
         CharStream cs = CharStreams.fromString("\"Olá\"");
@@ -27,21 +27,35 @@ public class KrenakLogoLexerTest {
         Token token = lexer.nextToken();
         assertEquals(KrenakLogoLexer.STRINGLITERAL, token.getType());
         assertEquals("\"Olá\"", token.getText());
-        
+
         token = lexer.nextToken();
         assertEquals(KrenakLogoLexer.EOF, token.getType());
     }
-    
+
     @Test
     public void testIdentifierToken() {
         CharStream cs = CharStreams.fromString("foo bar baz");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
-    
+
         assertEquals(KrenakLogoLexer.STRING, lexer.nextToken().getType());
         assertEquals(KrenakLogoLexer.STRING, lexer.nextToken().getType());
         assertEquals(KrenakLogoLexer.STRING, lexer.nextToken().getType());
-    
+
         assertEquals(KrenakLogoLexer.EOF, lexer.nextToken().getType());
-}
+    }
+
+    @Test
+    public void testProcedureToken() {
+        CharStream cs = CharStreams.fromString("tupü");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__0, token.getType()); // Verifique o tipo correto para 'tupu'
+        assertEquals("tupü", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
+
     //TODO: Outros testes
 }

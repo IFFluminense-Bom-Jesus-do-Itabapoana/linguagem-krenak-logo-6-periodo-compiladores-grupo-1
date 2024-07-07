@@ -37,7 +37,7 @@ procedureInvocation
     ;
 
 procedureDeclaration
-    : 'to' name parameterDeclarations* EOL? (line? EOL)+ 'end'
+    : 'tupü' name parameterDeclarations* EOL? (line? EOL)+ 'end'
     ;
 
 parameterDeclarations
