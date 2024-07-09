@@ -71,7 +71,7 @@ comparisonOperator
     ;
 
 make
-    : 'make' STRINGLITERAL value
+    : 'intschom' STRINGLITERAL value
     ;
 
 print_
