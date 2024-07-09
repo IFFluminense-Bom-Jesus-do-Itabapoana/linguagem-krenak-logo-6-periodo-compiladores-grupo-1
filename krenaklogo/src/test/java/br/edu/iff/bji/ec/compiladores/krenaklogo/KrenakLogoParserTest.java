@@ -59,7 +59,7 @@ public class KrenakLogoParserTest {
     @Test
     public void testPrintStatement() {
         String input = "tupü teste ak\n"
-                + "  pip 8 + 4\n"
+                + "  pip banana\n"
                 + "ak\n";
 
         CharStream cs = CharStreams.fromString(input);
@@ -68,9 +68,11 @@ public class KrenakLogoParserTest {
         KrenakLogoParser parser = new KrenakLogoParser(tokens);
 
         ParseTree tree = parser.prog();
+        
+        System.out.println(tree.toStringTree(parser));
 
         // Verificar a saída do comando print
-        String expectedOutput = "8 + 4";
+        String expectedOutput = "banana";
         String actualOutput = getPrintStatementOutput(parser, tree);
         // Remover espaços em branco extras antes de comparar
         assertEquals(expectedOutput.replaceAll("\\s+", ""), actualOutput.replaceAll("\\s+", ""));
