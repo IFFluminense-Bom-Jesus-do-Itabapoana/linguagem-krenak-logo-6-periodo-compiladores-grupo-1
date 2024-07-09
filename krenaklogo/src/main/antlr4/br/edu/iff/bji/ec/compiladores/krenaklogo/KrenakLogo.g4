@@ -75,7 +75,7 @@ make
     ;
 
 print_
-    : 'print' (value | quotedstring)
+    : 'pip' (value | quotedstring)
     ;
 
 quotedstring

@@ -64,8 +64,22 @@ public class KrenakLogoLexerTest {
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
 
-        assertEquals(KrenakLogoLexer.T__1, token.getType()); // Verifique o tipo correto para 'tupu'
+        assertEquals(KrenakLogoLexer.T__1, token.getType()); // Verifique o tipo correto para 'ak'
         assertEquals("ak", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
+    
+    @Test
+    public void testPrintToken() {
+        // print -> pip (ver)
+        CharStream cs = CharStreams.fromString("pip");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__12, token.getType()); // Verifique o tipo correto para 'pip'
+        assertEquals("pip", token.getText()); // Verifique o texto correto
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
