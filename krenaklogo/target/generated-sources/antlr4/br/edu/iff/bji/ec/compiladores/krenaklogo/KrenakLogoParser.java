@@ -48,7 +48,7 @@ public class KrenakLogoParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'tup\\u00FC'", "'end'", "':'", "','", "'repeat'", "'['", "']'", 
+			null, "'tup\\u00FC'", "'ak'", "':'", "','", "'repeat'", "'['", "']'", 
 			"'if'", "'<'", "'>'", "'='", "'make'", "'print'", "'+'", "'-'", "'*'", 
 			"'/'", "'fd'", "'forward'", "'bk'", "'backward'", "'rt'", "'right'", 
 			"'lt'", "'left'", "'cs'", "'clearscreen'", "'pu'", "'penup'", "'pd'", 

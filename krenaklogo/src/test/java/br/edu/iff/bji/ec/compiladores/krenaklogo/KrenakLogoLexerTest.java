@@ -46,12 +46,26 @@ public class KrenakLogoLexerTest {
 
     @Test
     public void testProcedureToken() {
+        // to -> tupü (Fazer)
         CharStream cs = CharStreams.fromString("tupü");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
 
         assertEquals(KrenakLogoLexer.T__0, token.getType()); // Verifique o tipo correto para 'tupu'
         assertEquals("tupü", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
+    @Test
+    public void testEndToken() {
+        // end -> ak (fechar, encerrar)
+        CharStream cs = CharStreams.fromString("ak");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__1, token.getType()); // Verifique o tipo correto para 'tupu'
+        assertEquals("ak", token.getText()); // Verifique o texto correto
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo

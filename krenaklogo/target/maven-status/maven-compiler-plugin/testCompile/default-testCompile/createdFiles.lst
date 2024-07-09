@@ -1,1 +1,3 @@
 br\edu\iff\bji\ec\compiladores\krenaklogo\KrenakLogoBaseListenerTest.class
+br\edu\iff\bji\ec\compiladores\krenaklogo\KrenakLogoParserTest.class
+br\edu\iff\bji\ec\compiladores\krenaklogo\KrenakLogoLexerTest.class
