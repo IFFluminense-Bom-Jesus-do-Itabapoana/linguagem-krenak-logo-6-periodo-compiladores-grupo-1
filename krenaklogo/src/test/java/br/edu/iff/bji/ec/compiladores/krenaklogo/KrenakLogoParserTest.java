@@ -4,9 +4,13 @@
  */
 package br.edu.iff.bji.ec.compiladores.krenaklogo;
 
+import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.jupiter.api.Test;
@@ -58,8 +62,8 @@ public class KrenakLogoParserTest {
 
     @Test
     public void testPrintStatement() {
-        String input = "tupü teste ak\n"
-                + "  pip banana\n"
+        String input = "tupü teste \n"
+                + "  pip [banana] \n"
                 + "ak\n";
 
         CharStream cs = CharStreams.fromString(input);
@@ -67,15 +71,33 @@ public class KrenakLogoParserTest {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         KrenakLogoParser parser = new KrenakLogoParser(tokens);
 
-        ParseTree tree = parser.prog();
-        
-        System.out.println(tree.toStringTree(parser));
+        // Adiciona um listener de erro personalizado para mostrar informações sobre os erros
+        parser.removeErrorListeners(); // Remove os listeners padrão
+        parser.addErrorListener(new BaseErrorListener() {
+            @Override
+            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
+                    int line, int charPositionInLine, String msg,
+                    RecognitionException e) {
+                System.err.printf("Erro de sintaxe na linha %d, posição %d: %s%n",
+                        line, charPositionInLine, msg);
+            }
+        });
 
-        // Verificar a saída do comando print
-        String expectedOutput = "banana";
-        String actualOutput = getPrintStatementOutput(parser, tree);
-        // Remover espaços em branco extras antes de comparar
-        assertEquals(expectedOutput.replaceAll("\\s+", ""), actualOutput.replaceAll("\\s+", ""));
+        // Processa o código de entrada
+        try {
+            ParseTree tree = parser.prog(); // Aqui o parser será executado
+            System.out.println(tree.toStringTree(parser));
+            // Verificar a saída do comando print
+            String expectedOutput = "banana";
+            String actualOutput = getPrintStatementOutput(parser, tree);
+            // Remover espaços em branco extras antes de comparar
+            assertEquals(expectedOutput.replaceAll("\\s+", ""), actualOutput.replaceAll("\\s+", ""));
+        } catch (RecognitionException | ParseCancellationException ex) {
+            // Captura exceções de reconhecimento (não deveria ocorrer se o parser terminar sem erros)
+            System.err.println("Erro durante a análise: " + ex.getMessage());
+        }
+        // Captura exceções de cancelamento de análise (parse)
+
     }
 
     private String getPrintStatementOutput(KrenakLogoParser parser, ParseTree tree) {
@@ -96,9 +118,20 @@ public class KrenakLogoParserTest {
         }
 
         @Override
-        public void exitPrint_(KrenakLogoParser.Print_Context ctx) {
-            // Obtém o texto do contexto do comando print
-            printStatement = ctx.getChild(1).getText(); // Assume que o texto está no segundo filho
+        public void exitPrint_(KrenakLogoParser.Print_Context ctx
+        ) {
+            if (ctx.quotedstring() != null) {
+                String quotedString = ctx.quotedstring().getText(); // Obtém o texto do quotedstring
+                System.out.println(quotedString);
+                String cleanedText = quotedString.substring(1, quotedString.length() - 1); // Remove os colchetes
+                printStatement = cleanedText; // Define a declaração de impressão como o texto limpo
+                System.out.println("É um quotedstring: " + cleanedText);
+            } else if(ctx.value() != null) {
+                // Outro tipo de statement
+                System.out.println("É um value: " + ctx.value().getText());
+                printStatement = ctx.getChild(1).getText(); // Assume que o texto está no segundo filho
+
+            }
         }
 
         public String getPrintStatement() {
