@@ -4,6 +4,8 @@
  */
 package br.edu.iff.bji.ec.compiladores.krenaklogo;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -62,9 +64,11 @@ public class KrenakLogoParserTest {
 
     @Test
     public void testPrintStatement() {
-        String input = "tupü teste \n"
-                + "  pip [banana] \n"
-                + "ak\n";
+        String input = "tupü teste\n"
+                + "  intschom \"variavel\" 10 + 20 \n"
+                + "  pip :variavel \n"
+                 + "  pip [puts] \n"
+                + "ak \n";
 
         CharStream cs = CharStreams.fromString(input);
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
@@ -88,7 +92,7 @@ public class KrenakLogoParserTest {
             ParseTree tree = parser.prog(); // Aqui o parser será executado
             System.out.println(tree.toStringTree(parser));
             // Verificar a saída do comando print
-            String expectedOutput = "banana";
+            String expectedOutput = "puts";
             String actualOutput = getPrintStatementOutput(parser, tree);
             // Remover espaços em branco extras antes de comparar
             assertEquals(expectedOutput.replaceAll("\\s+", ""), actualOutput.replaceAll("\\s+", ""));
@@ -112,9 +116,22 @@ public class KrenakLogoParserTest {
 
         private KrenakLogoParser parser;
         private String printStatement;
+        private Map<String, String> variables = new HashMap<>();
 
         public PrintStatementListener(KrenakLogoParser parser) {
             this.parser = parser;
+        }
+
+        @Override
+        public void exitMake(KrenakLogoParser.MakeContext ctx) {
+           String varName = ctx.STRINGLITERAL().getText();
+            varName = varName.substring(1, varName.length() - 1); // Remove as aspas
+            String varValue = ctx.value().getText();
+             if (varValue.startsWith("\"")) {
+                 varValue = varValue.substring(1, varValue.length() - 1);
+             }
+            variables.put(varName, varValue);
+            System.out.println("Definindo variável: " + varName + " com valor: " + varValue);
         }
 
         @Override
@@ -122,13 +139,23 @@ public class KrenakLogoParserTest {
         ) {
             if (ctx.quotedstring() != null) {
                 String quotedString = ctx.quotedstring().getText(); // Obtém o texto do quotedstring
-                System.out.println(quotedString);
                 String cleanedText = quotedString.substring(1, quotedString.length() - 1); // Remove os colchetes
                 printStatement = cleanedText; // Define a declaração de impressão como o texto limpo
                 System.out.println("É um quotedstring: " + cleanedText);
-            } else if(ctx.value() != null) {
+            } else if (ctx.value() != null) {
+               String value = ctx.value().getText();
+                if (value.startsWith(":")) {
+                    String varName = value.substring(1);
+                    var text = variables.getOrDefault(varName, "undefined");
+                    printStatement = text;
+                } else {
+                    printStatement = value;
+                }
+                System.out.println("É um value: " + printStatement); // Assume que o texto está no segundo filho
+
+            } else {
                 // Outro tipo de statement
-                System.out.println("É um value: " + ctx.value().getText());
+                System.out.println("É um algo: " + ctx.getText());
                 printStatement = ctx.getChild(1).getText(); // Assume que o texto está no segundo filho
 
             }
