@@ -150,11 +150,11 @@ st
     ;
 
 home
-    : 'home'
+    : 'kischem'
     ;
 
 stop
-    : 'stop'
+    : 'jan'
     ;
 
 label
