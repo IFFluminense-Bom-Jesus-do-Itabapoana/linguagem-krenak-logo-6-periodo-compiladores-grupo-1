@@ -117,7 +117,7 @@ bk
     ;
 
 rt
-    : ('rt' | 'right') expression
+    : ('nk' | 'nikuanin') expression
     ;
 
 lt

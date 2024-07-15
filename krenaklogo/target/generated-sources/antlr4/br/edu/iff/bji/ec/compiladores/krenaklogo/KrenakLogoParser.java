@@ -50,7 +50,7 @@ public class KrenakLogoParser extends Parser {
 		return new String[] {
 			null, "'tup\\u00FC'", "'ak'", "':'", "','", "'intai'", "'['", "']'", 
 			"'if'", "'<'", "'>'", "'='", "'intschom'", "'pip'", "'+'", "'-'", "'*'", 
-			"'/'", "'fd'", "'forward'", "'bk'", "'backward'", "'rt'", "'right'", 
+			"'/'", "'fd'", "'forward'", "'bk'", "'backward'", "'nk'", "'nikuanin'", 
 			"'lt'", "'mokia'", "'cs'", "'clearscreen'", "'pu'", "'penup'", "'pd'", 
 			"'pendown'", "'ht'", "'hideturtle'", "'st'", "'showturtle'", "'kischem'", 
 			"'jan'", "'label'", "'iopu'", "'random'", "'for'"
