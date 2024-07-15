@@ -112,7 +112,7 @@ public class KrenakLogoLexerTest {
     }
 
     @Test
-    public void testhomeToken() {
+    public void testHomeToken() {
         // home -> kischem (Casa)
         CharStream cs = CharStreams.fromString("kischem");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
@@ -125,7 +125,7 @@ public class KrenakLogoLexerTest {
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
 }
      @Test
-    public void teststopToken() {
+    public void testStopToken() {
         // stop -> jan (Sair)
         CharStream cs = CharStreams.fromString("jan");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
