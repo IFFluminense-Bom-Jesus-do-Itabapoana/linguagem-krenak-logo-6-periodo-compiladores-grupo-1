@@ -181,5 +181,18 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+@Test
+    public void testRtToken() {
+        // rt -> nk (direita)
+        CharStream cs = CharStreams.fromString("nk");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__21, token.getType()); // Verifique o tipo correto para 'nk'
+        assertEquals("nk", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
 
 }
