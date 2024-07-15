@@ -150,7 +150,7 @@ st
     ;
 
 home
-    : 'home'
+    : 'kischem'
     ;
 
 stop

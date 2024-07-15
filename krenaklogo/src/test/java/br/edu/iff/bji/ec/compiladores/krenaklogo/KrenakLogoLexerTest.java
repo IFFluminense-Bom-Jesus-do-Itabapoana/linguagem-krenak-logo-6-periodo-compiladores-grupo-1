@@ -97,6 +97,18 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+    @Test
+    public void testhomeToken() {
+        // home -> kischem (Casa)
+        CharStream cs = CharStreams.fromString("kischem");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
 
+        assertEquals(KrenakLogoLexer.T__35, token.getType()); // Verifique o tipo correto para 'kischem'
+        assertEquals("kischem", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+}
     //TODO: Outros testes
 }
