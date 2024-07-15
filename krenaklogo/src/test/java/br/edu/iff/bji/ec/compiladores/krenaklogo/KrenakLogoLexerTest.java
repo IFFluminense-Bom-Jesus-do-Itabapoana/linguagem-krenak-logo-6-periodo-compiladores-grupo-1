@@ -97,7 +97,7 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-<<<<<<< HEAD
+//<<<<<<< HEAD
     
 @Test
     public void testLeftToken() {
@@ -111,7 +111,7 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-=======
+
     @Test
     public void testhomeToken() {
         // home -> kischem (Casa)
@@ -139,6 +139,35 @@ public class KrenakLogoLexerTest {
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     
 }
+    
+    
+    @Test
+    public void testRepeatToken() {
+        // repeat -> intai (repetir)
+        CharStream cs = CharStreams.fromString("intai");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__4, token.getType()); // Verifique o tipo correto para 'intschom'
+        assertEquals("intai", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
+
+     @Test
+    public void testSetxyToken() {
+        // stexy -> iopu (pó-iopu/ dedo indicador)
+        CharStream cs = CharStreams.fromString("iopu");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__38, token.getType()); // Verifique o tipo correto para 'iopu'
+        assertEquals("iopu", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
 //TODO: Outros testes
->>>>>>> 5136b9574a01f42ad67b9b425d4f2e9ee3c7a995
+//>>>>>>> 5136b9574a01f42ad67b9b425d4f2e9ee3c7a995
 }

@@ -49,7 +49,7 @@ func_
     ;
 
 repeat_
-    : 'repeat' number block
+    : 'intai' number block
     ;
 
 block
@@ -162,7 +162,7 @@ label
     ;
 
 setxy
-    : 'setxy' expression expression
+    : 'iopu' expression expression
     ;
 
 random
