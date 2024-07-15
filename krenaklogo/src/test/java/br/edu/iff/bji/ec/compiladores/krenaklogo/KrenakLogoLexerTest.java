@@ -97,6 +97,17 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+    
+@Test
+    public void testLeftToken() {
+        CharStream cs = CharStreams.fromString("mokia");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
 
-    //TODO: Outros testes
+        assertEquals(KrenakLogoLexer.T__24, token.getType()); // Verifique o tipo correto para 'intschom'
+        assertEquals("mokia", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
 }

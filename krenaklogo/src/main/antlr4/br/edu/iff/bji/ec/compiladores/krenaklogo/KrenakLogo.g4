@@ -121,7 +121,7 @@ rt
     ;
 
 lt
-    : ('lt' | 'left') expression
+    : ('lt' | 'mokia') expression
     ;
 
 cs
