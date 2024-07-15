@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.109 s -- in br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest
-=======
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.151 s -- in br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest
->>>>>>> cf8a0b7281f3aaa985586097e7b328cebf532ed8
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.117 s -- in br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest

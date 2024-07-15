@@ -97,11 +97,7 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-<<<<<<< HEAD
-//<<<<<<< HEAD
-=======
->>>>>>> cf8a0b7281f3aaa985586097e7b328cebf532ed8
-    
+
     @Test
     public void testltToken() {
         CharStream cs = CharStreams.fromString("mk");
@@ -186,9 +182,4 @@ public class KrenakLogoLexerTest {
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
 
-//TODO: Outros testes
-<<<<<<< HEAD
-//>>>>>>> 5136b9574a01f42ad67b9b425d4f2e9ee3c7a995
-=======
->>>>>>> cf8a0b7281f3aaa985586097e7b328cebf532ed8
 }
