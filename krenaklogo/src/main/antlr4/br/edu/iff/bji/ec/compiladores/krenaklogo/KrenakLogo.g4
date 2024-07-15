@@ -154,7 +154,7 @@ home
     ;
 
 stop
-    : 'stop'
+    : 'jan'
     ;
 
 label

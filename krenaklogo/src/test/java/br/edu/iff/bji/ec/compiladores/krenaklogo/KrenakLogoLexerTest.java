@@ -110,5 +110,19 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
 }
-    //TODO: Outros testes
+     @Test
+    public void teststopToken() {
+        // stop -> jan (Sair)
+        CharStream cs = CharStreams.fromString("jan");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__36, token.getType()); // Verifique o tipo correto para 'jan'
+        assertEquals("jan", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    
+}
+//TODO: Outros testes
 }
