@@ -66,9 +66,15 @@ WS=47
 'forward'=19
 'bk'=20
 'backward'=21
+<<<<<<< HEAD
 'nk'=22
 'nikuanin'=23
 'lt'=24
+=======
+'rt'=22
+'right'=23
+'mk'=24
+>>>>>>> cf8a0b7281f3aaa985586097e7b328cebf532ed8
 'mokia'=25
 'cs'=26
 'clearscreen'=27
