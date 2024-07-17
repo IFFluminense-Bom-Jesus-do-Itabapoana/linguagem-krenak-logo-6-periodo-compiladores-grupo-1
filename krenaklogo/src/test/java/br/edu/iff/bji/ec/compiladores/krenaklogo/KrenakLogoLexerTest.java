@@ -242,7 +242,7 @@ public class KrenakLogoLexerTest {
     }
 
      @Test
-    public void testltToken() {
+    public void testLtToken() {
         CharStream cs = CharStreams.fromString("mk");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
@@ -282,7 +282,7 @@ public class KrenakLogoLexerTest {
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
     @Test
-    public void testcsToken(){
+    public void testCsToken(){
         //cs= kr(limpar)
         CharStream cs = CharStreams.fromString("kr");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
