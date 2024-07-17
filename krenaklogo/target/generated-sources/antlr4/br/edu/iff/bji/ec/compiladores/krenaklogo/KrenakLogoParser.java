@@ -51,9 +51,9 @@ public class KrenakLogoParser extends Parser {
 			null, "'tup\\u00FC'", "'ak'", "':'", "','", "'intai'", "'['", "']'", 
 			"'if'", "'<'", "'>'", "'='", "'intschom'", "'pip'", "'+'", "'-'", "'*'", 
 			"'/'", "'fd'", "'forward'", "'bk'", "'backward'", "'nk'", "'nikuanin'", 
-			"'mk'", "'mokia'", "'cs'", "'clearscreen'", "'pu'", "'penup'", "'pd'", 
-			"'pendown'", "'ht'", "'hideturtle'", "'st'", "'showturtle'", "'kischem'", 
-			"'jan'", "'label'", "'iopu'", "'random'", "'for'"
+			"'mk'", "'mokia'", "'cs'", "'clearscreen'", "'pb'", "'po tu um bakui'", 
+			"'pd'", "'pendown'", "'ht'", "'hideturtle'", "'st'", "'showturtle'", 
+			"'kischem'", "'jan'", "'label'", "'iopu'", "'random'", "'for'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

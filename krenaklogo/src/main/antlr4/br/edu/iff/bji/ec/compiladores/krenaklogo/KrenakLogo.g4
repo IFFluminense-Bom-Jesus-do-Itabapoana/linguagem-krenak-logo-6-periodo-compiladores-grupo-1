@@ -130,8 +130,8 @@ cs
     ;
 
 pu
-    : 'pu'
-    | 'penup'
+    : 'pb'
+    | 'po tu um bakui'
     ;
 
 pd

@@ -181,7 +181,8 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-@Test
+    
+    @Test
     public void testRtToken() {
         // rt -> nk (direita)
         CharStream cs = CharStreams.fromString("nk");
@@ -194,5 +195,22 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+    
+    @Test
+    public void testPenupToken() {
+        String[] inputs = {"po tu um bakui", "pb"};
+        int[] expectedTokenTypes = {KrenakLogoLexer.T__28, KrenakLogoLexer.T__27};
 
+        for (int i = 0; i < inputs.length; i++) {
+            CharStream cs = CharStreams.fromString(inputs[i]);
+            KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+            Token token = lexer.nextToken();
+
+            assertEquals(expectedTokenTypes[i], token.getType());
+            assertEquals(inputs[i], token.getText());
+
+            token = lexer.nextToken();
+            assertEquals(Token.EOF, token.getType());
+        }
+    }
 }
