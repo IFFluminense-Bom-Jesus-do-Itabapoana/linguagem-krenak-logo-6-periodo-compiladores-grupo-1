@@ -140,8 +140,8 @@ pd
     ;
 
 ht
-    : 'ht'
-    | 'hideturtle'
+    : 'hh'
+    | 'hion-hinkut'
     ;
 
 st

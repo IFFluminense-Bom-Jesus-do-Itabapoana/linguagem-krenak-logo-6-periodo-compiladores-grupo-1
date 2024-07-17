@@ -231,4 +231,22 @@ public class KrenakLogoLexerTest {
             assertEquals(Token.EOF, token.getType());
         }
     }
+    
+    @Test
+    public void testHideturtleToken() {
+        String[] inputs = {"hion-hinkut", "hh"};
+        int[] expectedTokenTypes = {KrenakLogoLexer.T__32, KrenakLogoLexer.T__31};
+
+        for (int i = 0; i < inputs.length; i++) {
+            CharStream cs = CharStreams.fromString(inputs[i]);
+            KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+            Token token = lexer.nextToken();
+
+            assertEquals(expectedTokenTypes[i], token.getType());
+            assertEquals(inputs[i], token.getText());
+
+            token = lexer.nextToken();
+            assertEquals(Token.EOF, token.getType());
+        }
+    }
 }

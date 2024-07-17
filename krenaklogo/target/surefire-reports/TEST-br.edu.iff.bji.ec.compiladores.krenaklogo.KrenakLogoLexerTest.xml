@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.13" tests="16" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.145" tests="17" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="19"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-19\bin"/>
-    <property name="sun.java.command" value="C:\Users\Everaldo\AppData\Local\Temp\surefire8504547636879816331\surefirebooter-20240717145633095_3.jar C:\Users\Everaldo\AppData\Local\Temp\surefire8504547636879816331 2024-07-17T14-56-32_869-jvmRun1 surefire-20240717145633095_1tmp surefire_0-20240717145633095_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Everaldo\AppData\Local\Temp\surefire3666685792678048463\surefirebooter-20240717150104612_3.jar C:\Users\Everaldo\AppData\Local\Temp\surefire3666685792678048463 2024-07-17T15-01-04_395-jvmRun1 surefire-20240717150104612_1tmp surefire_0-20240717150104612_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest"/>
     <property name="surefire.test.class.path" value="C:\Users\Everaldo\Documents\NetBeansProjects\linguagem-krenak-logo-6-periodo-compiladores-grupo-1\krenaklogo\target\test-classes;C:\Users\Everaldo\Documents\NetBeansProjects\linguagem-krenak-logo-6-periodo-compiladores-grupo-1\krenaklogo\target\classes;C:\Users\Everaldo\.m2\repository\org\antlr\antlr4\4.13.1\antlr4-4.13.1.jar;C:\Users\Everaldo\.m2\repository\org\antlr\antlr4-runtime\4.13.1\antlr4-runtime-4.13.1.jar;C:\Users\Everaldo\.m2\repository\org\antlr\antlr-runtime\3.5.3\antlr-runtime-3.5.3.jar;C:\Users\Everaldo\.m2\repository\org\antlr\ST4\4.3.4\ST4-4.3.4.jar;C:\Users\Everaldo\.m2\repository\org\abego\treelayout\org.abego.treelayout.core\1.0.3\org.abego.treelayout.core-1.0.3.jar;C:\Users\Everaldo\.m2\repository\com\ibm\icu\icu4j\72.1\icu4j-72.1.jar;C:\Users\Everaldo\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\Everaldo\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Everaldo\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Everaldo\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\Everaldo\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\Everaldo\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\Everaldo\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Everaldo\AppData\Local\Temp\surefire8504547636879816331\surefirebooter-20240717145633095_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Everaldo\AppData\Local\Temp\surefire3666685792678048463\surefirebooter-20240717150104612_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="19.0.2+7-44"/>
@@ -60,20 +60,21 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="63.0"/>
   </properties>
-  <testcase name="testRightToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.071"/>
+  <testcase name="testRightToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.08"/>
+  <testcase name="testHideturtleToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.003"/>
   <testcase name="testStopToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
   <testcase name="testEndToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
   <testcase name="testPendownToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.002"/>
   <testcase name="testltToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
-  <testcase name="testHomeToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.002"/>
-  <testcase name="testProcedureToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.002"/>
+  <testcase name="testHomeToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
+  <testcase name="testProcedureToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
   <testcase name="testSetxyToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
   <testcase name="testPenupToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
   <testcase name="testPrintToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
-  <testcase name="testNumberToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.0"/>
+  <testcase name="testNumberToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
   <testcase name="testRepeatToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
   <testcase name="testRtToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
-  <testcase name="testStringLiteralToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
+  <testcase name="testStringLiteralToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.002"/>
   <testcase name="testIdentifierToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.002"/>
   <testcase name="testMakeToken" classname="br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest" time="0.001"/>
 </testsuite>
