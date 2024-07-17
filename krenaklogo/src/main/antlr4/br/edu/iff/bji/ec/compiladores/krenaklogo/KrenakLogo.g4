@@ -126,7 +126,7 @@ lt
 
 cs
     : 'cs'
-    | 'clearscreen'
+    | 'kurim'
     ;
 
 pu
