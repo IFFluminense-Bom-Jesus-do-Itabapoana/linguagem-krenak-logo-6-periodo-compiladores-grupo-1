@@ -49,7 +49,7 @@ public class KrenakLogoLexer extends Lexer {
 			null, "'tup\\u00FC'", "'ak'", "':'", "','", "'intai'", "'['", "']'", 
 			"'if'", "'<'", "'>'", "'='", "'intschom'", "'pip'", "'+'", "'-'", "'*'", 
 			"'/'", "'fd'", "'forward'", "'bk'", "'backward'", "'nk'", "'nikuanin'", 
-			"'mk'", "'mokia'", "'cs'", "'kurim'", "'pb'", "'po tu um bakui'", "'ph'", 
+			"'mk'", "'mokia'", "'kr'", "'kurim'", "'pb'", "'po tu um bakui'", "'ph'", 
 			"'po tu um hek hek'", "'hh'", "'hion-hinkut'", "'st'", "'showturtle'", 
 			"'kischem'", "'jan'", "'label'", "'iopu'", "'random'", "'for'"
 		};
@@ -256,8 +256,8 @@ public class KrenakLogoLexer extends Lexer {
 		"\u0005m\u0000\u0000\u00b7\u00b8\u0005k\u0000\u0000\u00b80\u0001\u0000"+
 		"\u0000\u0000\u00b9\u00ba\u0005m\u0000\u0000\u00ba\u00bb\u0005o\u0000\u0000"+
 		"\u00bb\u00bc\u0005k\u0000\u0000\u00bc\u00bd\u0005i\u0000\u0000\u00bd\u00be"+
-		"\u0005a\u0000\u0000\u00be2\u0001\u0000\u0000\u0000\u00bf\u00c0\u0005c"+
-		"\u0000\u0000\u00c0\u00c1\u0005s\u0000\u0000\u00c14\u0001\u0000\u0000\u0000"+
+		"\u0005a\u0000\u0000\u00be2\u0001\u0000\u0000\u0000\u00bf\u00c0\u0005k"+
+		"\u0000\u0000\u00c0\u00c1\u0005r\u0000\u0000\u00c14\u0001\u0000\u0000\u0000"+
 		"\u00c2\u00c3\u0005k\u0000\u0000\u00c3\u00c4\u0005u\u0000\u0000\u00c4\u00c5"+
 		"\u0005r\u0000\u0000\u00c5\u00c6\u0005i\u0000\u0000\u00c6\u00c7\u0005m"+
 		"\u0000\u0000\u00c76\u0001\u0000\u0000\u0000\u00c8\u00c9\u0005p\u0000\u0000"+

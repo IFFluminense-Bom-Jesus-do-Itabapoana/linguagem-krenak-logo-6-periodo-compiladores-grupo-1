@@ -125,7 +125,7 @@ lt
     ;
 
 cs
-    : 'cs'
+    : 'kr'
     | 'kurim'
     ;
 

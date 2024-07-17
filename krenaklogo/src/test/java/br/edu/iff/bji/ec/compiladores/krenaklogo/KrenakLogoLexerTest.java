@@ -100,18 +100,7 @@ public class KrenakLogoLexerTest {
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
 
-    @Test
-    public void testltToken() {
-        CharStream cs = CharStreams.fromString("mk");
-        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
-        Token token = lexer.nextToken();
-
-        assertEquals(KrenakLogoLexer.T__23, token.getType()); // Verifique o tipo correto para 'intschom'
-        assertEquals("mk", token.getText()); // Verifique o texto correto
-
-        token = lexer.nextToken();
-        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
-    }
+   
 
     @Test
     public void testHomeToken() {
@@ -252,6 +241,19 @@ public class KrenakLogoLexerTest {
         }
     }
 
+     @Test
+    public void testltToken() {
+        CharStream cs = CharStreams.fromString("mk");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__23, token.getType()); // Verifique o tipo correto para 'intschom'
+        assertEquals("mk", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
+    
     @Test
     public void testLeftToken() {
         // Left -> mokia (esquerda)
@@ -279,7 +281,19 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-    
+    @Test
+    public void testcsToken(){
+        //cs= kr(limpar)
+        CharStream cs = CharStreams.fromString("kr");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__25, token.getType()); // Verifique o tipo correto para 'intschom'
+        assertEquals("kr", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    } 
     
     
     
