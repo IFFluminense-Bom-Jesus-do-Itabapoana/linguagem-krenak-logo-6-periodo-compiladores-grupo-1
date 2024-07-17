@@ -213,4 +213,22 @@ public class KrenakLogoLexerTest {
             assertEquals(Token.EOF, token.getType());
         }
     }
+    
+    @Test
+    public void testPendownToken() {
+        String[] inputs = {"po tu um hek hek", "ph"};
+        int[] expectedTokenTypes = {KrenakLogoLexer.T__30, KrenakLogoLexer.T__29};
+
+        for (int i = 0; i < inputs.length; i++) {
+            CharStream cs = CharStreams.fromString(inputs[i]);
+            KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+            Token token = lexer.nextToken();
+
+            assertEquals(expectedTokenTypes[i], token.getType());
+            assertEquals(inputs[i], token.getText());
+
+            token = lexer.nextToken();
+            assertEquals(Token.EOF, token.getType());
+        }
+    }
 }

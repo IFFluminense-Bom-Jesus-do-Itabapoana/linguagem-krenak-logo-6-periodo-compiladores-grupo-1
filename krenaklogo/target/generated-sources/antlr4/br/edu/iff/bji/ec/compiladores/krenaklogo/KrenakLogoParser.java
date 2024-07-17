@@ -52,7 +52,7 @@ public class KrenakLogoParser extends Parser {
 			"'if'", "'<'", "'>'", "'='", "'intschom'", "'pip'", "'+'", "'-'", "'*'", 
 			"'/'", "'fd'", "'forward'", "'bk'", "'backward'", "'nk'", "'nikuanin'", 
 			"'mk'", "'mokia'", "'cs'", "'clearscreen'", "'pb'", "'po tu um bakui'", 
-			"'pd'", "'pendown'", "'ht'", "'hideturtle'", "'st'", "'showturtle'", 
+			"'ph'", "'po tu um hek hek'", "'ht'", "'hideturtle'", "'st'", "'showturtle'", 
 			"'kischem'", "'jan'", "'label'", "'iopu'", "'random'", "'for'"
 		};
 	}

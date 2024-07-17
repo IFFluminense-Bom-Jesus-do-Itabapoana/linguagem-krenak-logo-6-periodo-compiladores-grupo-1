@@ -135,8 +135,8 @@ pu
     ;
 
 pd
-    : 'pd'
-    | 'pendown'
+    : 'ph'
+    | 'po tu um hek hek'
     ;
 
 ht
