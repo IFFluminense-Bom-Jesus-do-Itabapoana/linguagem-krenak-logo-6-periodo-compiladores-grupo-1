@@ -170,7 +170,7 @@ random
     ;
 
 fore
-    : 'for' '[' name expression expression expression ']' block
+    : 'himpa' '[' name expression expression expression ']' block
     ;
 
 number

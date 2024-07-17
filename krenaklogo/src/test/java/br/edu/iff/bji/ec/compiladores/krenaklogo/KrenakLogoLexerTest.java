@@ -295,7 +295,19 @@ public class KrenakLogoLexerTest {
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     } 
     
-    
+     @Test
+    public void testForToken() {
+        //for= himpa(muitas vezes)
+        CharStream cs = CharStreams.fromString("himpa");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__40, token.getType()); // Verifique o tipo correto para 'intschom'
+        assertEquals("himpa", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
     
     
     
