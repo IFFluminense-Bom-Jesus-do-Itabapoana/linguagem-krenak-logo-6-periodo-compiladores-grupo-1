@@ -29,6 +29,7 @@ replay_pid*
 krenaklogo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 krenaklogo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 krenaklogo/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+krenaklogo/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
 krenaklogo/target/surefire-reports/br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoBaseListenerTest.txt
 krenaklogo/target/surefire-reports/br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest.txt
 krenaklogo/target/surefire-reports/br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoParserTest.txt
