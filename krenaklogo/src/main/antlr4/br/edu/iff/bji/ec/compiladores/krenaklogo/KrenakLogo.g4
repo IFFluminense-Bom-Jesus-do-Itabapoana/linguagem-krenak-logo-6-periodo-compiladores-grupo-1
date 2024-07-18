@@ -113,7 +113,7 @@ fd
     ;
 
 bk
-    : ('bk' | 'backward') expression
+    : ('at' | 'anthore') expression
     ;
 
 rt
