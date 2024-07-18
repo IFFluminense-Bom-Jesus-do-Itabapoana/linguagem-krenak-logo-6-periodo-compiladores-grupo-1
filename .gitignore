@@ -10,6 +10,9 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+#reports 
+krenaklogo/target/surefire-reports
+krenaklogo/target/generated-sources/antlr4/br/edu/iff/bji/ec/compiladores/krenaklogo/
 # Package Files #
 *.jar
 *.war
