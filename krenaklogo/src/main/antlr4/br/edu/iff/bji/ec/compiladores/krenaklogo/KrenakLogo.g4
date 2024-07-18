@@ -158,7 +158,7 @@ stop
     ;
 
 label
-    : 'label'
+    : 'kanhun'
     ;
 
 setxy

@@ -100,8 +100,6 @@ public class KrenakLogoLexerTest {
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
 
-   
-
     @Test
     public void testHomeToken() {
         // home -> kischem (Casa)
@@ -244,7 +242,7 @@ public class KrenakLogoLexerTest {
         }
     }
 
-     @Test
+    @Test
     public void testLtToken() {
         CharStream cs = CharStreams.fromString("mk");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
@@ -256,7 +254,7 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-    
+
     @Test
     public void testLeftToken() {
         // Left -> mokia (esquerda)
@@ -284,8 +282,9 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+
     @Test
-    public void testCsToken(){
+    public void testCsToken() {
         //cs= kr(limpar)
         CharStream cs = CharStreams.fromString("kr");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
@@ -296,9 +295,9 @@ public class KrenakLogoLexerTest {
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
-    } 
-    
-     @Test
+    }
+
+    @Test
     public void testForToken() {
         //for= himpa(muitas vezes)
         CharStream cs = CharStreams.fromString("himpa");
@@ -311,6 +310,7 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+
     @Test
     public void testIfToken() {
         // If -> huk(qual)
@@ -318,14 +318,13 @@ public class KrenakLogoLexerTest {
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
 
-
         assertEquals(KrenakLogoLexer.T__7, token.getType()); // Verifique o tipo correto para 'intschom'
         assertEquals("huk", token.getText()); // Verifique o texto correto
-
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+
     @Test
     public void testFdToken() {
         // Fd -> mg(Para Frente - Abreviacao)
@@ -333,29 +332,27 @@ public class KrenakLogoLexerTest {
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
 
-
         assertEquals(KrenakLogoLexer.T__17, token.getType()); // Verifique o tipo correto para 'intschom'
         assertEquals("mg", token.getText()); // Verifique o texto correto
-
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-     @Test
+
+    @Test
     public void testForwardToken() {
         // Forward -> mrong(Para Frente)
         CharStream cs = CharStreams.fromString("mrong");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
 
-
         assertEquals(KrenakLogoLexer.T__18, token.getType()); // Verifique o tipo correto para 'intschom'
         assertEquals("mrong", token.getText()); // Verifique o texto correto
-
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
+
     @Test
     public void testBkToken() {
         // Bk -> at(Para Atras - Abreviacao)
@@ -363,30 +360,39 @@ public class KrenakLogoLexerTest {
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
 
-
         assertEquals(KrenakLogoLexer.T__19, token.getType()); // Verifique o tipo correto para 'intschom'
         assertEquals("at", token.getText()); // Verifique o texto correto
-
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-     @Test
+
+    @Test
     public void testBackwardToken() {
         // Backward -> anthore(Para Atras)
         CharStream cs = CharStreams.fromString("anthore");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
 
-
         assertEquals(KrenakLogoLexer.T__20, token.getType()); // Verifique o tipo correto para 'intschom'
         assertEquals("anthore", token.getText()); // Verifique o texto correto
-
 
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
 
-    
-    
+    @Test
+    public void testLabelToken() {
+        // Label -> kanhun(nome)
+        CharStream cs = CharStreams.fromString("kanhun");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+        assertEquals(KrenakLogoLexer.T__37, token.getType()); // Verifique o tipo correto para 'intschom'
+        assertEquals("kanhun", token.getText()); // Verifique o texto correto
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
+
 }
