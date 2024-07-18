@@ -311,7 +311,22 @@ public class KrenakLogoLexerTest {
         token = lexer.nextToken();
         assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
     }
-    
+    @Test
+    public void testIfToken() {
+        // If -> huk(qual)
+        CharStream cs = CharStreams.fromString("huk");
+        KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
+        Token token = lexer.nextToken();
+
+
+        assertEquals(KrenakLogoLexer.T__7, token.getType()); // Verifique o tipo correto para 'intschom'
+        assertEquals("huk", token.getText()); // Verifique o texto correto
+
+
+        token = lexer.nextToken();
+        assertEquals(Token.EOF, token.getType()); // Verifique o fim do arquivo
+    }
+
     
     
 }

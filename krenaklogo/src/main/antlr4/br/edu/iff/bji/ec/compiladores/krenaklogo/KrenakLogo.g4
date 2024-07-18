@@ -57,7 +57,7 @@ block
     ;
 
 ife
-    : 'if' comparison block
+    : 'huk' comparison block
     ;
 
 comparison
