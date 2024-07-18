@@ -188,7 +188,8 @@ public class KrenakLogoLexerTest {
     }
 
     @Test
-    public void testPenupToken() {
+    public void testPenupTokens() {
+        // Penup -> po tu um bakui (punho acima)
         String[] inputs = {"po tu um bakui", "pb"};
         int[] expectedTokenTypes = {KrenakLogoLexer.T__28, KrenakLogoLexer.T__27};
 
@@ -206,7 +207,8 @@ public class KrenakLogoLexerTest {
     }
 
     @Test
-    public void testPendownToken() {
+    public void testPendownTokens() {
+        // Pendown -> po tu um hek hek (punho baixo)
         String[] inputs = {"po tu um hek hek", "ph"};
         int[] expectedTokenTypes = {KrenakLogoLexer.T__30, KrenakLogoLexer.T__29};
 
@@ -224,7 +226,8 @@ public class KrenakLogoLexerTest {
     }
 
     @Test
-    public void testHideturtleToken() {
+    public void testHideturtleTokens() {
+        // Hide Turtle -> Hion-Hinkut (Esconder tartaruga)
         String[] inputs = {"hion-hinkut", "hh"};
         int[] expectedTokenTypes = {KrenakLogoLexer.T__32, KrenakLogoLexer.T__31};
 
