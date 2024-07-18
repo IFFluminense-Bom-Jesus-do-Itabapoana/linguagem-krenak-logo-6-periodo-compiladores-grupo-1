@@ -32,3 +32,10 @@ krenaklogo/target/maven-status/maven-compiler-plugin/compile/default-compile/inp
 krenaklogo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 /krenaklogo/nbproject/
 /krenaklogo/target
+krenaklogo/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+krenaklogo/target/surefire-reports/br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoBaseListenerTest.txt
+krenaklogo/target/surefire-reports/br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest.txt
+krenaklogo/target/surefire-reports/br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoParserTest.txt
+krenaklogo/target/surefire-reports/TEST-br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoBaseListenerTest.xml
+krenaklogo/target/surefire-reports/TEST-br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexerTest.xml
+krenaklogo/target/surefire-reports/TEST-br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoParserTest.xml
