@@ -109,7 +109,7 @@ deref
     ;
 
 fd
-    : ('fd' | 'forward') expression
+    : ('mg' | 'mrong') expression
     ;
 
 bk
