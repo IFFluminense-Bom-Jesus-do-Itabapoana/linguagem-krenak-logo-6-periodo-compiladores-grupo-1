@@ -166,7 +166,7 @@ setxy
     ;
 
 random
-    : 'random' expression
+    : 'krahiimakuan' expression
     ;
 
 fore
