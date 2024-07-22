@@ -158,7 +158,7 @@ stop
     ;
 
 label
-    : 'label'
+    : 'kanhun'
     ;
 
 setxy
@@ -166,7 +166,7 @@ setxy
     ;
 
 random
-    : 'random' expression
+    : 'krahiimakuan' expression
     ;
 
 fore
