@@ -246,6 +246,7 @@ public class KrenakLogoLexerTest {
 
      @Test
     public void testLtToken() {
+        // lt -> mk (esquerda)
         CharStream cs = CharStreams.fromString("mk");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         Token token = lexer.nextToken();
