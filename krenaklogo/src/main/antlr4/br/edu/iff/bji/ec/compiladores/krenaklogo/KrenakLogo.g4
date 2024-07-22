@@ -145,8 +145,8 @@ ht
     ;
 
 st
-    : 'st'
-    | 'showturtle'
+    : 'kh'
+    | 'kanhinkut'
     ;
 
 home
