@@ -74,6 +74,7 @@ public class KrenakLogoParserTest {
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         KrenakLogoParser parser = new KrenakLogoParser(tokens);
+        
 
         // Adiciona um listener de erro personalizado para mostrar informações sobre os erros
         parser.removeErrorListeners(); // Remove os listeners padrão
