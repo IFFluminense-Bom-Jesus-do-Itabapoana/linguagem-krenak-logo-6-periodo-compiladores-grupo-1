@@ -4,7 +4,17 @@
  */
 package br.edu.iff.bji.ec.compiladores.krenaklogo;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Point;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,10 +25,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.Utilities;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -35,14 +55,31 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  * @author luanp
  */
 public class IDE extends javax.swing.JFrame {
-    
+
     private boolean hasSyntaxErrors = false;
 
     /**
      * Creates new form IDE
      */
     public IDE() {
-        initComponents();
+        initComponents();  // Seu método de inicialização existente
+
+        // Criar a JTextArea
+        textArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        // Criar o JScrollPane e adicionar a JTextArea a ele
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        // Criar e configurar a barra de números de linha
+        LineNumberingTextArea lineNumberingTextArea = new LineNumberingTextArea(textArea);
+        scrollPane.setRowHeaderView(lineNumberingTextArea);
+
+        // Configurar o layout do painel para BorderLayout
+        panel.setLayout(new BorderLayout());
+
+        // Adicionar o JScrollPane ao painel (no centro, por exemplo)
+        panel.add(scrollPane, BorderLayout.CENTER);
+
     }
 
     /**
@@ -54,57 +91,68 @@ public class IDE extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        codeArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         terminalArea = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
+        panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KRENAK_LOGO");
 
-        jLabel1.setText("Krenak Logo IDE");
-
-        codeArea.setColumns(20);
-        codeArea.setRows(5);
-        jScrollPane1.setViewportView(codeArea);
-
+        terminalArea.setEditable(false);
+        terminalArea.setBackground(new java.awt.Color(51, 51, 51));
+        terminalArea.setForeground(new java.awt.Color(255, 255, 255));
+        terminalArea.setSelectionColor(new java.awt.Color(204, 204, 204));
         jScrollPane2.setViewportView(terminalArea);
 
-        jButton1.setText("RUN");
+        jButton1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        jButton1.setText("▶ RUN");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
+        jButton1.setHideActionText(true);
+        jButton1.setOpaque(true);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        panel.setPreferredSize(new java.awt.Dimension(375, 500));
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 312, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
+            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(525, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,8 +160,8 @@ public class IDE extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         terminalArea.setText(" ");
-        
-        var code = (String) codeArea.getText();
+
+        var code = (String) textArea.getText();
         CharStream cs = CharStreams.fromString(code + "\n");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -144,7 +192,10 @@ public class IDE extends javax.swing.JFrame {
             tokens.getTokens().forEach(token -> {
                 String translatedText = tradutor(token.getType());
                 if (translatedText != null) {
-                    logoCode.append(translatedText).append(" ");
+                    logoCode.append(translatedText);
+                    if (token.getType() != 3) {
+                        logoCode.append(" ");
+                    }
                 } else if (!token.getText().equals("<EOF>")) {
                     logoCode.append(token.getText()).append(" ");
                 }
@@ -201,22 +252,7 @@ public class IDE extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        FlatDarkLaf.setup();
         //</editor-fold>
 
         /* Create and display the form */
@@ -242,13 +278,13 @@ public class IDE extends javax.swing.JFrame {
                 appendToTerminal(s, Color.RED);
             }
             case 'n' -> {
-                appendToTerminal(s, Color.BLACK);
+                appendToTerminal(s, Color.WHITE);
             }
             case 'i' -> {
-                appendToTerminal(s, Color.BLUE);
+                appendToTerminal(s, Color.CYAN);
             }
             default ->
-                appendToTerminal(s, Color.BLACK);
+                appendToTerminal(s, Color.WHITE);
         }
 
     }
@@ -263,9 +299,12 @@ public class IDE extends javax.swing.JFrame {
         }
         StyledDocument doc = terminalArea.getStyledDocument();
         Style style = terminalArea.addStyle("Style", null);
+        Style tstyle = terminalArea.addStyle("Style", null);
         StyleConstants.setForeground(style, c);
+        StyleConstants.setForeground(tstyle, Color.WHITE);
         try {
-            doc.insertString(doc.getLength(), "\n" + message, style);
+            doc.insertString(doc.getLength(), "\n /Krenak/> ", tstyle);
+            doc.insertString(doc.getLength(), message, style);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -295,7 +334,7 @@ public class IDE extends javax.swing.JFrame {
         tokenMap.put(18, "fd");
         tokenMap.put(19, "forward");
         tokenMap.put(20, "bk");
-        tokenMap.put(21, "backward");
+        tokenMap.put(21, "back");
         tokenMap.put(22, "rt");
         tokenMap.put(23, "right");
         tokenMap.put(24, "lt");
@@ -324,11 +363,119 @@ public class IDE extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea codeArea;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel panel;
     private javax.swing.JTextPane terminalArea;
     // End of variables declaration//GEN-END:variables
+   JTextArea textArea = new JTextArea();
+}
+
+class LineNumberingTextArea extends JComponent implements CaretListener, DocumentListener, PropertyChangeListener {
+
+    private static final long serialVersionUID = 1L;
+    private final JTextArea textArea;
+    private int lastDigits;
+    private int lastHeight;
+    private int lastLineCount;
+
+    public LineNumberingTextArea(JTextArea textArea) {
+        this.textArea = textArea;
+        textArea.getDocument().addDocumentListener(this);
+        textArea.addCaretListener(this);
+        textArea.addPropertyChangeListener(this);
+        lastDigits = 0;
+        lastHeight = 0;
+        lastLineCount = 0;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        FontMetrics fontMetrics = textArea.getFontMetrics(textArea.getFont());
+        Insets insets = textArea.getInsets();
+        int availableWidth = getWidth() - insets.left - insets.right;
+        int lineHeight = fontMetrics.getHeight();
+        int y = insets.top + fontMetrics.getAscent();
+
+        int startOffset = textArea.viewToModel(new Point(0, insets.top));
+        int endOffset = textArea.viewToModel(new Point(0, getHeight()));
+
+        while (startOffset <= endOffset) {
+            try {
+                int lineNumber = getLineNumber(startOffset);
+                String lineNumberText = String.valueOf(lineNumber);
+                int stringWidth = fontMetrics.stringWidth(lineNumberText);
+                int x = availableWidth - stringWidth;
+                g.drawString(lineNumberText, x, y);
+                startOffset = Utilities.getRowEnd(textArea, startOffset) + 1;
+                y += lineHeight;
+            } catch (Exception e) {
+                break;
+            }
+        }
+    }
+
+    private int getLineNumber(int offset) {
+        Document doc = textArea.getDocument();
+        Element root = doc.getDefaultRootElement();
+        return root.getElementIndex(offset) + 1;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        int lineCount = textArea.getLineCount();
+        int digits = Math.max(3, String.valueOf(lineCount).length());
+        FontMetrics fontMetrics = textArea.getFontMetrics(textArea.getFont());
+        int width = digits * fontMetrics.charWidth('0') + 6;
+        int height = textArea.getHeight();
+
+        if (lastDigits != digits) {
+            lastDigits = digits;
+            firePropertyChange("preferredWidth", 0, width);
+        }
+
+        if (lastHeight != height) {
+            lastHeight = height;
+            firePropertyChange("preferredHeight", 0, height);
+        }
+
+        return new Dimension(width, height);
+    }
+
+    @Override
+    public void caretUpdate(CaretEvent e) {
+        repaint();
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        documentChanged();
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        documentChanged();
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        documentChanged();
+    }
+
+    protected void documentChanged() {
+        int lineCount = textArea.getLineCount();
+        if (lineCount != lastLineCount) {
+            repaint();
+            lastLineCount = lineCount;
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("font".equals(evt.getPropertyName())) {
+            repaint();
+        }
+    }
 }
