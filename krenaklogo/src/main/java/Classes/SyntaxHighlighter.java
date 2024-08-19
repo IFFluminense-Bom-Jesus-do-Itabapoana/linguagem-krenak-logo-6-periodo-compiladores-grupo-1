@@ -6,10 +6,7 @@ package Classes;
 
 import br.edu.iff.bji.ec.compiladores.krenaklogo.KrenakLogoLexer;
 import java.awt.Color;
-import java.util.Arrays;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
