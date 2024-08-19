@@ -4,51 +4,32 @@
  */
 package br.edu.iff.bji.ec.compiladores.krenaklogo;
 
+import Classes.KrenakLogoTranslator;
+import Classes.LineNumberingText;
+import Classes.SyntaxHighlighter;
+import Classes.TerminalPrinter;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.Point;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
-import javax.swing.text.Utilities;
+import javax.swing.JTextPane;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 /**
  *
@@ -57,6 +38,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 public class IDE extends javax.swing.JFrame {
 
     private boolean hasSyntaxErrors = false;
+    TerminalPrinter terminal;
 
     /**
      * Creates new form IDE
@@ -71,14 +53,17 @@ public class IDE extends javax.swing.JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         // Criar e configurar a barra de números de linha
-        LineNumberingTextArea lineNumberingTextArea = new LineNumberingTextArea(textArea);
-        scrollPane.setRowHeaderView(lineNumberingTextArea);
+        LineNumberingText lineNumberingText = new LineNumberingText(textArea);
+        scrollPane.setRowHeaderView(lineNumberingText);
 
         // Configurar o layout do painel para BorderLayout
         panel.setLayout(new BorderLayout());
 
         // Adicionar o JScrollPane ao painel (no centro, por exemplo)
         panel.add(scrollPane, BorderLayout.CENTER);
+
+        terminal = new TerminalPrinter(terminalArea);
+        SyntaxHighlighter syntaxHighlighter = new SyntaxHighlighter(lineNumberingText, textArea);
 
     }
 
@@ -161,72 +146,47 @@ public class IDE extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         terminalArea.setText(" ");
 
-        var code = (String) textArea.getText();
+        var code = textArea.getText();
         CharStream cs = CharStreams.fromString(code + "\n");
         KrenakLogoLexer lexer = new KrenakLogoLexer(cs);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         KrenakLogoParser parser = new KrenakLogoParser(tokens);
 
-        String logoFileName = "temp.logo";
+        // Instancia o tradutor
+        KrenakLogoTranslator krenakLogoTranslator = new KrenakLogoTranslator(terminal);
 
-        // Adiciona um listener de erro personalizado para mostrar informações sobre os erros
-        parser.removeErrorListeners(); // Remove os listeners padrão
-        parser.addErrorListener(new BaseErrorListener() {
-            @Override
-            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
-                    int line, int charPositionInLine, String msg,
-                    RecognitionException e) {
-                String errorMsg = String.format("Erro de sintaxe na linha %d, posição %d: %s",
-                        line, charPositionInLine, msg);
-                printTerminal(errorMsg, 'e');
-                hasSyntaxErrors = true;
-            }
-        });
+        // Adiciona o listener de erro através do método da classe
+        krenakLogoTranslator.addErrorListener(parser);
 
         // Processa o código de entrada
         try {
             ParseTree tree = parser.prog(); // Aqui o parser será executado
 
-            StringBuilder logoCode = new StringBuilder();
+            // Tradução dos tokens para código Logo
+            String logoCode = krenakLogoTranslator.translateTokens(tokens);
 
-            tokens.getTokens().forEach(token -> {
-                String translatedText = tradutor(token.getType());
-                if (translatedText != null) {
-                    logoCode.append(translatedText);
-                    if (token.getType() != 3) {
-                        logoCode.append(" ");
-                    }
-                } else if (!token.getText().equals("<EOF>")) {
-                    logoCode.append(token.getText()).append(" ");
-                }
-            });
+            // Criação do arquivo Logo temporário
+            String logoFileName = "temp.logo";
+            File logoFile = krenakLogoTranslator.createLogoFile(logoCode, logoFileName);
 
-            File logoFile = new File(logoFileName);
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logoFile))) {
-                writer.write(logoCode.toString());
-            } catch (IOException ex) {
-                Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            terminal.print("O cod foi criado com sucesso!", 'i');
 
-            printTerminal("O cod foi criado com sucesso!", 'i');
-
-            // Caminho para o intérprete Logo (substitua pelo caminho correto)
+            // Caminho para o intérprete Logo 
             String logoInterpreter = "C:\\Program Files (x86)\\UCBLogo\\ucblogo.exe";
 
             // Criação do comando para executar o arquivo Logo
             ProcessBuilder pb = new ProcessBuilder(logoInterpreter, logoFileName);
-
             pb.redirectErrorStream(true);
 
             // Inicia o processo se não houver erros
-            if (!hasSyntaxErrors) {
+            if (!krenakLogoTranslator.hasSyntaxErrors()) {
                 Process process = pb.start();
 
                 new Thread(() -> {
                     try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                         String line;
                         while ((line = reader.readLine()) != null) {
-                            printTerminal(line, 'w');
+                            terminal.print(line, 'w');
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -236,11 +196,11 @@ public class IDE extends javax.swing.JFrame {
 
         } catch (RecognitionException | ParseCancellationException ex) {
             // Captura exceções de reconhecimento (não deveria ocorrer se o parser terminar sem erros)
-            printTerminal("Erro durante a análise: " + ex.getMessage(), 'e');
+            terminal.print("Erro durante a análise: " + ex.getMessage(), 'e');
         } catch (IOException ex) {
+            System.out.println("Error IDE");
             Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -263,104 +223,6 @@ public class IDE extends javax.swing.JFrame {
         });
     }
 
-    public void printTerminal(Object s) {
-        // Chama o método principal com um valor padrão para classPrint
-        printTerminal(s, 'n'); // Exemplo de valor padrão para classPrint
-    }
-
-    public void printTerminal(Object s, char classPrint) {
-
-        switch (classPrint) {
-            case 'w' -> {
-                appendToTerminal(s, Color.YELLOW);
-            }
-            case 'e' -> {
-                appendToTerminal(s, Color.RED);
-            }
-            case 'n' -> {
-                appendToTerminal(s, Color.WHITE);
-            }
-            case 'i' -> {
-                appendToTerminal(s, Color.CYAN);
-            }
-            default ->
-                appendToTerminal(s, Color.WHITE);
-        }
-
-    }
-
-    private void appendToTerminal(Object s, Color c) {
-        String message;
-
-        if (s instanceof String) {
-            message = (String) s;
-        } else {
-            message = s.toString(); // Converte o objeto para String
-        }
-        StyledDocument doc = terminalArea.getStyledDocument();
-        Style style = terminalArea.addStyle("Style", null);
-        Style tstyle = terminalArea.addStyle("Style", null);
-        StyleConstants.setForeground(style, c);
-        StyleConstants.setForeground(tstyle, Color.WHITE);
-        try {
-            doc.insertString(doc.getLength(), "\n /Krenak/> ", tstyle);
-            doc.insertString(doc.getLength(), message, style);
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String tradutor(int i) {
-        Map<Integer, String> tokenMap = new HashMap<>();
-
-        // Adicionando os mapeamentos
-        tokenMap.put(1, "to");
-        tokenMap.put(2, "end");
-        tokenMap.put(3, ":");
-        tokenMap.put(4, ",");
-        tokenMap.put(5, "repeat");
-        tokenMap.put(6, "[");
-        tokenMap.put(7, "]");
-        tokenMap.put(8, "if");
-        tokenMap.put(9, "<");
-        tokenMap.put(10, ">");
-        tokenMap.put(11, "=");
-        tokenMap.put(12, "make");
-        tokenMap.put(13, "print");
-        tokenMap.put(14, "+");
-        tokenMap.put(15, "-");
-        tokenMap.put(16, "*");
-        tokenMap.put(17, "/");
-        tokenMap.put(18, "fd");
-        tokenMap.put(19, "forward");
-        tokenMap.put(20, "bk");
-        tokenMap.put(21, "back");
-        tokenMap.put(22, "rt");
-        tokenMap.put(23, "right");
-        tokenMap.put(24, "lt");
-        tokenMap.put(25, "left");
-        tokenMap.put(26, "cs");
-        tokenMap.put(27, "clearscreen");
-        tokenMap.put(28, "pu");
-        tokenMap.put(29, "penup");
-        tokenMap.put(30, "pd");
-        tokenMap.put(31, "pendown");
-        tokenMap.put(32, "ht");
-        tokenMap.put(33, "hideturtle");
-        tokenMap.put(34, "st");
-        tokenMap.put(35, "showturtle");
-        tokenMap.put(36, "home");
-        tokenMap.put(37, "stop");
-        tokenMap.put(38, "label");
-        tokenMap.put(39, "setxy");
-        tokenMap.put(40, "random");
-        tokenMap.put(41, "for");
-
-        String tokenText = tokenMap.get(i);
-
-        return tokenText;
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -368,114 +230,6 @@ public class IDE extends javax.swing.JFrame {
     private javax.swing.JPanel panel;
     private javax.swing.JTextPane terminalArea;
     // End of variables declaration//GEN-END:variables
-   JTextArea textArea = new JTextArea();
-}
+   JTextPane textArea = new JTextPane();
 
-class LineNumberingTextArea extends JComponent implements CaretListener, DocumentListener, PropertyChangeListener {
-
-    private static final long serialVersionUID = 1L;
-    private final JTextArea textArea;
-    private int lastDigits;
-    private int lastHeight;
-    private int lastLineCount;
-
-    public LineNumberingTextArea(JTextArea textArea) {
-        this.textArea = textArea;
-        textArea.getDocument().addDocumentListener(this);
-        textArea.addCaretListener(this);
-        textArea.addPropertyChangeListener(this);
-        lastDigits = 0;
-        lastHeight = 0;
-        lastLineCount = 0;
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        FontMetrics fontMetrics = textArea.getFontMetrics(textArea.getFont());
-        Insets insets = textArea.getInsets();
-        int availableWidth = getWidth() - insets.left - insets.right;
-        int lineHeight = fontMetrics.getHeight();
-        int y = insets.top + fontMetrics.getAscent();
-
-        int startOffset = textArea.viewToModel(new Point(0, insets.top));
-        int endOffset = textArea.viewToModel(new Point(0, getHeight()));
-
-        while (startOffset <= endOffset) {
-            try {
-                int lineNumber = getLineNumber(startOffset);
-                String lineNumberText = String.valueOf(lineNumber);
-                int stringWidth = fontMetrics.stringWidth(lineNumberText);
-                int x = availableWidth - stringWidth;
-                g.drawString(lineNumberText, x, y);
-                startOffset = Utilities.getRowEnd(textArea, startOffset) + 1;
-                y += lineHeight;
-            } catch (Exception e) {
-                break;
-            }
-        }
-    }
-
-    private int getLineNumber(int offset) {
-        Document doc = textArea.getDocument();
-        Element root = doc.getDefaultRootElement();
-        return root.getElementIndex(offset) + 1;
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        int lineCount = textArea.getLineCount();
-        int digits = Math.max(3, String.valueOf(lineCount).length());
-        FontMetrics fontMetrics = textArea.getFontMetrics(textArea.getFont());
-        int width = digits * fontMetrics.charWidth('0') + 6;
-        int height = textArea.getHeight();
-
-        if (lastDigits != digits) {
-            lastDigits = digits;
-            firePropertyChange("preferredWidth", 0, width);
-        }
-
-        if (lastHeight != height) {
-            lastHeight = height;
-            firePropertyChange("preferredHeight", 0, height);
-        }
-
-        return new Dimension(width, height);
-    }
-
-    @Override
-    public void caretUpdate(CaretEvent e) {
-        repaint();
-    }
-
-    @Override
-    public void changedUpdate(DocumentEvent e) {
-        documentChanged();
-    }
-
-    @Override
-    public void insertUpdate(DocumentEvent e) {
-        documentChanged();
-    }
-
-    @Override
-    public void removeUpdate(DocumentEvent e) {
-        documentChanged();
-    }
-
-    protected void documentChanged() {
-        int lineCount = textArea.getLineCount();
-        if (lineCount != lastLineCount) {
-            repaint();
-            lastLineCount = lineCount;
-        }
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if ("font".equals(evt.getPropertyName())) {
-            repaint();
-        }
-    }
 }
