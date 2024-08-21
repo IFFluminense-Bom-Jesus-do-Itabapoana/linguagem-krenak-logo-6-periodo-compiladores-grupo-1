@@ -1,14 +1,2 @@
-to ngora :kiiuk 
- if :kiiuk < 5 [ forward :kiiuk back :kiiuk stop ] 
- forward :kiiuk / 3 
- left 30 ngora :kiiuk * 2 / 3 right 30 
- forward :kiiuk / 6 
- right 25 ngora :kiiuk / 2 left 25 
- forward :kiiuk / 3 
- right 25 ngora :kiiuk / 2 left 25 
- forward :kiiuk / 6 
- back :kiiuk 
- end 
- clearscreen 
- ngora 150 
+print 20 o 
  
