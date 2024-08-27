@@ -10,14 +10,14 @@ O KrenakLogo busca preservar e valorizar esta rica cultura, adaptando conceitos 
 ## Passo a Passo para Utilizar o KrenakLogo
 
 1. **Instale o Java JDK 19**
-   - Certifique-se de ter o **Java JDK 19** instalado no seu computador. Se ainda não tiver, você pode baixá-lo do site oficial da Oracle ou OpenJDK.
+   - Certifique-se de ter o **Java JDK 19** instalado no seu computador. Se ainda não tiver, você pode baixá-lo do [site oficial da Oracle](https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html).
 
 2. **Instale o UCBLogo (Berkeley Logo)**
    - O KrenakLogo foi inspirado pela linguagem Logo, e você precisará instalar o **UCBLogo**. 
    - Baixe o UCBLogo do [site oficial da Berkeley](https://people.eecs.berkeley.edu/~bh/logo.html).
 
 3. **Baixe o Código do Projeto**
-   - Acesse o GitHub e baixe o código do projeto no seguinte link: [KrenakLogo no GitHub](https://github.com/IFFluminense-Bom-Jesus-do-Itabapoana/linguagem-krenak-logo-6-periodo-compiladores-grupo-1/tree/main).
+   - Baixe o código do projeto desse Github.
    - Você pode baixar o repositório como um arquivo `.zip` ou cloná-lo usando o Git.
 
 4. **Abra o Projeto no Apache NetBeans**
