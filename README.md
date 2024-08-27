@@ -7,6 +7,32 @@ Este projeto visa criar um compilador para a língua indígena Krenak, utilizand
 
 O KrenakLogo busca preservar e valorizar esta rica cultura, adaptando conceitos da linguagem Logo para criar uma plataforma de programação acessível e educativa que represente a cultura Krenak. Este projeto proporciona uma oportunidade única para a comunidade acadêmica e a sociedade se envolverem com a cultura indígena de maneira inovadora e tecnológica, promovendo a preservação linguística e cultural.
 
+## Passo a Passo para Utilizar o KrenakLogo
+
+1. **Instale o Java JDK 19**
+   - Certifique-se de ter o **Java JDK 19** instalado no seu computador. Se ainda não tiver, você pode baixá-lo do site oficial da Oracle ou OpenJDK.
+
+2. **Instale o UCBLogo (Berkeley Logo)**
+   - O KrenakLogo foi inspirado pela linguagem Logo, e você precisará instalar o **UCBLogo**. 
+   - Baixe o UCBLogo do [site oficial da Berkeley](https://people.eecs.berkeley.edu/~bh/logo.html).
+
+3. **Baixe o Código do Projeto**
+   - Acesse o GitHub e baixe o código do projeto no seguinte link: [KrenakLogo no GitHub](https://github.com/IFFluminense-Bom-Jesus-do-Itabapoana/linguagem-krenak-logo-6-periodo-compiladores-grupo-1/tree/main).
+   - Você pode baixar o repositório como um arquivo `.zip` ou cloná-lo usando o Git.
+
+4. **Abra o Projeto no Apache NetBeans**
+   - Instale o **Apache NetBeans** se ainda não tiver. Você pode baixá-lo [aqui](https://netbeans.apache.org/front/main/download/nb22/).
+   - Abra o NetBeans e use `File > Open Project` para abrir o projeto KrenakLogo que você baixou do GitHub.
+
+5. **Compile e Execute o Projeto**
+   - No NetBeans, clique com o botão direito no projeto e selecione `Clean and Build`. Isso irá compilar o projeto e resolver quaisquer dependências.
+   - Depois, clique em `Run` para executar o projeto.
+
+6. **Programar na Interface IDE**
+   - Após o projeto ser executado, a interface da IDE do KrenakLogo será aberta.
+   - A partir daí, você pode começar a programar utilizando a sintaxe do KrenakLogo, criando funções, desenhando formas, e explorando os comandos que foram definidos.
+
+
 ## Guia de Uso
 #### Declaração de Funções
 
