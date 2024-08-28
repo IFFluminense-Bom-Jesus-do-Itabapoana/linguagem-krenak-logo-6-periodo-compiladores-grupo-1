@@ -1,2 +1,7 @@
-print 20 o 
+to main 
+ repeat 3 [ fd 100 rt 120 ] 
+ end 
+ 
+ 
+ main 
  

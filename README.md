@@ -40,7 +40,7 @@ A construção de funções em KrenakLogo segue o modelo tradicional da linguage
 
 ```krenaklogo
 tupü NomeDaFuncao
-    // Comandos e operações
+    ;Comandos e operações
 ak
 ```
 
@@ -48,10 +48,7 @@ Exemplo:
 
 ```krenaklogo
 tupü DesenharQuadrado
-    intai 4 [
-        mg 100
-        nk 90
-    ]
+	intai 4 [ mg 100 nk 90 ]
 ak
 ```
 
@@ -67,11 +64,9 @@ Os comandos de movimento são centrais em KrenakLogo, permitindo a manipulação
 Exemplo:
 
 ```krenaklogo
-tupü CaminhoSimples
-    mg 100
-    nk 90
-    mg 50
-ak
+mg 100
+nk 90
+mg 50
 ```
 
 #### Estruturas de Controle
@@ -81,19 +76,13 @@ KrenakLogo também suporta estruturas de controle, como loops e condicionais. A 
 Exemplo de loop:
 
 ```krenaklogo
-intai 5 [
-    mg 50
-    nk 72
-]
+intai 5 [ mg 50 nk 72 ]
 ```
 
 Exemplo de condicional:
 ```krenaklogo
-huk (condicao) [
-    mg 100
-] intschom [
-    mk 90
-]
+huk (:condicao = 0) [ mrong 100 nikuanin 90 mrong 100 ]
+huk (:condicao = 1) [ anthore 100 mk 90 anthore 100 ]
 ```
 
 #### Comandos de Desenho
@@ -109,10 +98,7 @@ Exemplo:
 ```krenaklogo
 tupü DesenharTriangulo
     ph
-    intai 3 [
-        mg 100
-        nk 120
-    ]
+    intai 3 [ mg 100 nk 120 ]
     pb
 ak
 ```
@@ -124,13 +110,9 @@ Para adicionar comentários e notas explicativas no código, utilize `//` no in�
 Exemplo:
 
 ```krenaklogo
-// Esta função desenha um quadrado
-tupü DesenharQuadrado
-    intai 4 [
-        mg 100
-        nk 90
-    ]
-ak
+;Esta função desenha um quadrado
+tupü quadrado
+	intai 4 [ mg 100 nk 90 ]
 ```
 
 #### Estrutura Completa
@@ -139,12 +121,43 @@ A seguir, um exemplo de programa KrenakLogo completo que combina os elementos di
 
 ```krenaklogo
 // Programa para desenhar uma estrela
-tupü DesenharEstrela
-    ph
-    intai 5 [
-        mg 100
-        nk 144
-    ]
-    pb
+tupü ngora :kiiuk
+   huk :kiiuk < 5 [mrong  :kiiuk anthore :kiiuk jan]
+   mrong :kiiuk/3
+   mokia 30 ngora :kiiuk*2/3 nikuanin 30
+   mrong :kiiuk/6
+   nikuanin 25 ngora :kiiuk/2 mokia 25
+   mrong :kiiuk/3
+   nikuanin 25 ngora :kiiuk/2 mokia 25
+   mrong :kiiuk/6
+   anthore:kiiuk
 ak
+kurim
+ngora 150
 ```
+
+## Dicionário (Tabela de Traduções)
+
+| LOGO            | KRENAK               | TRADUÇÃO                    |
+|-----------------|----------------------|-----------------------------|
+| to              | tupü                 | Fazer                       |
+| end             | ak                   | Fim                         |
+| repeat          | intai                | Repetir                     |
+| if              | Huk                  | Qual                        |
+| make            | intschom             | Fazer                       |
+| print           | pip                  | Ver                         |
+| fd/forward      | mg / mrong           | Para frente                 |
+| bk/backward     | at / anthore         | Para trás                   |
+| rt/right        | nk / nikuanin        | Para direita                |
+| lt/left         | mk / mokia           | Para esquerda               |
+| cs/clearscreen  | kr / kurim           | Limpar                      |
+| pu/penup        | pb / po tu um bakui  | Punho acima                 |
+| pd/pendown      | ph / po tu um hek hek| Punho baixo                 |
+| ht/hideturtle   | hh / Hion-Hinkut     | Esconder tartaruga          |
+| st/showturtle   | kh / Kan-Hinkut      | Mostrar-me tartaruga        |
+| home            | kischem              | Casa                        |
+| stop            | jan                  | Sair                        |
+| label           | KanHun               | Nome                        |
+| setxy           | iopu                 | Pó-iopu/ Dedo indicador     |
+| for             | himpa                | Muitas vezes                |
+| random          | krahi imakuan        | Alguém                      |

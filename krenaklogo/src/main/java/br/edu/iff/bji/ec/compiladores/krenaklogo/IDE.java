@@ -224,7 +224,7 @@ public class IDE extends javax.swing.JFrame {
             terminal.print("O cod foi criado com sucesso!", 'i');
 
             // Caminho para o intérprete Logo 
-            String logoInterpreter = "C:\\Program Files (x86)\\UCBLogo\\ucblogo.exe";
+            String logoInterpreter = "D:\\Program Files (x86)\\UCBLogo\\ucblogo.exe";
 
             // Criação do comando para executar o arquivo Logo
             ProcessBuilder pb = new ProcessBuilder(logoInterpreter, logoFileName);
