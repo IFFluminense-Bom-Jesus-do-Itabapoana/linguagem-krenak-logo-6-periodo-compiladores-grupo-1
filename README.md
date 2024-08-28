@@ -15,6 +15,7 @@ O KrenakLogo busca preservar e valorizar esta rica cultura, adaptando conceitos 
 2. **Instale o UCBLogo (Berkeley Logo)**
    - O KrenakLogo foi inspirado pela linguagem Logo, e você precisará instalar o **UCBLogo**. 
    - Baixe o UCBLogo do [site oficial da Berkeley](https://people.eecs.berkeley.edu/~bh/logo.html).
+   - Instale no diretório padrão `"D:\\Program Files (x86)\\UCBLogo\\ucblogo.exe"`.
 
 3. **Baixe o Código do Projeto**
    - Baixe o código do projeto desse Github.
@@ -22,6 +23,7 @@ O KrenakLogo busca preservar e valorizar esta rica cultura, adaptando conceitos 
 
 4. **Abra o Projeto no Apache NetBeans**
    - Instale o **Apache NetBeans** se ainda não tiver. Você pode baixá-lo [aqui](https://netbeans.apache.org/front/main/download/nb22/).
+   - Lembre-se de configurar para o **Java JDK 19**!
    - Abra o NetBeans e use `File > Open Project` para abrir o projeto KrenakLogo que você baixou do GitHub.
 
 5. **Compile e Execute o Projeto**
@@ -47,9 +49,11 @@ ak
 Exemplo:
 
 ```krenaklogo
-tupü DesenharQuadrado
+tupü main
 	intai 4 [ mg 100 nk 90 ]
 ak
+
+main
 ```
 
 #### Comandos de Movimento
@@ -113,6 +117,7 @@ Exemplo:
 ;Esta função desenha um quadrado
 tupü quadrado
 	intai 4 [ mg 100 nk 90 ]
+ak
 ```
 
 #### Estrutura Completa
