@@ -109,7 +109,7 @@ ak
 
 #### Comentários
 
-Para adicionar comentários e notas explicativas no código, utilize `//` no início da linha. Comentários são ignorados pelo compilador e servem para ajudar na compreensão do código.
+Para adicionar comentários e notas explicativas no código, utilize `;` no início da linha. Comentários são ignorados pelo compilador e servem para ajudar na compreensão do código.
 
 Exemplo:
 
@@ -125,7 +125,7 @@ ak
 A seguir, um exemplo de programa KrenakLogo completo que combina os elementos discutidos:
 
 ```krenaklogo
-// Programa para desenhar uma estrela
+; Programa para desenhar uma estrela
 tupü ngora :kiiuk
    huk :kiiuk < 5 [mrong  :kiiuk anthore :kiiuk jan]
    mrong :kiiuk/3
